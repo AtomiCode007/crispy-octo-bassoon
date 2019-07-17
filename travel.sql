@@ -30,3 +30,25 @@ insert into locations values ('Iceland',3,1,5,'Europe','hiking');
 insert into locations values ('Hawaii',4,4,2,'Island','beach,hiking');
 
 select * from locations;
+
+
+drop table if exists users;
+create table users
+(
+lastname varchar(20) NOT NULL,
+firstname varchar(20) NOT NULL,
+email varchar(30) NOT NULL,
+phone varchar(20) NOT NULL,
+passwd varchar(20),
+primary key (email)
+);
+
+
+drop table if exists trips;
+create table trips
+(
+tripID int NOT NULL,
+locname varchar(20) NOT NULL,
+email varchar(20) NOT NULL,
+primary key (tripID)
+);
