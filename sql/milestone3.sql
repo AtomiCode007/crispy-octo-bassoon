@@ -1,6 +1,4 @@
-CREATE DATABASE vacation_db;
-
-\c vacation_db;
+use vacation_db;
 
 CREATE TABLE IF NOT EXISTS destinations(Destination_Name text, Cost_Destination text, Activity_Destination text, Climate_Destination text);
 CREATE TABLE IF NOT EXISTS users(user_id text, email text, password text);
