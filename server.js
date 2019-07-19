@@ -96,6 +96,11 @@ app.post('/register', function(req,res)
     if(err) throw err;
     console.log("user added")
   })
+  .then
+  {
+    res.sendFile(__dirname +'/views/Homepage.html')
+
+  }
 })
 
 
