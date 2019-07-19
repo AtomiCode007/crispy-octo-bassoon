@@ -77,6 +77,11 @@ app.get('/search', function(req,res)
 //	db.task('get-everything', task => {
   //return task.batch([task.any(insert_statement), task.any(color_select)
  // ]);
+
+ app.use(bodyParser.urlencoded({
+   extended: true
+ }));
+ 
 app.post('/register', function(req,res)
 {
   console.log("Got a POST request for the REGISTER page");
@@ -86,8 +91,8 @@ app.post('/register', function(req,res)
   var phone = req.body.phone;
   var passwrd = req.body.pass;
   console.log(lastn);
-  var useradd = "insert into users values ('"+lastn+"','"+firstn+"','"+email+"','"+phone+"','"+phone+"','"+passwrd+"');";
-  db.query(sql, function(err,result){
+  var useradd = "insert into users values ('"+lastn+"','"+firstn+"','"+email+"','"+phone+"','"+passwrd+"');";
+  db.query(useradd, function(err,result){
     if(err) throw err;
     console.log("user added")
   })
