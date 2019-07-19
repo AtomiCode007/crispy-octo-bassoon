@@ -10,9 +10,10 @@ var app = express();
 var bodyParser = require('body-parser'); //Ensure our body-parser tool has been added
 app.use(bodyParser.json());              // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+var path=require('path');
 
 //Create Database Connection
-var pgp = require('pg-promise')();
+var mysql = require('mysql');
 
 /**********************
   Database Connection information
@@ -22,65 +23,29 @@ var pgp = require('pg-promise')();
   user: This should be left as postgres, the default user account created when PostgreSQL was installed
   password: This the password for accessing the database.  You'll need to set a password USING THE PSQL TERMINAL THIS IS NOT A PASSWORD FOR POSTGRES USER ACCOUNT IN LINUX!
 **********************/
-const dbConfig = {
+var Connect =  mysql.createConnection({
 	host: 'localhost',
-	port: 5432,
-	database: 'vacation_db',
-	user: 'postgres',
-	password: 'pwd'
-};
-
-var db = pgp(dbConfig);
-
-// set the view engine to ejs
-app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/pages'));//This line is necessary for us to use relative paths and access our resources directory
-
-
-app.get('/', function(req, res) {
-	res.render('/views/pages',{
-		local_cjs:"login.cjs", 
-		my_title:"Login Page"
-	});
+	port: 3306,
+	database: 'crispy_travel',
+	user: 'Con',
+	password: 'password'
 });
 
+Connect.connect(function(err) {
+	if (err) throw err;
+	console.log("Connected!");
+  });
+//
 
-app.get('/views/register', function(req, res) {
-	res.render('/views',{
-		local_html:"Register.html",
-		my_title:"Registration Page"
-	});
-});
+app.use(express.static(__dirname + '/'));
 
-
-app.get('/home', function(req,res)
+app.get('/', function(req,res)
 {
-	/*var query = 'select * from favorite_colors;';
-	db.any(query)
-		.then(function(rows)
-		{
-			res.render('pages/home',
-			{
-				my_title: "Home Page",
-				data: rows,
-				color: '',
-				color_msg: ''
-			})
-		})
-		.catch(function(err)
-		{
-			request.flash('error',err);
-			response.render('pages/home', 
-			{
-				title: 'Home Page',
-				data: '',
-				color: '',
-				color_msg: ''
-			})
-		})*/
+  console.log("Got a GET request for the homepage");
+  
+  
+  //res.sendFile(__dirname + '/views/Homepage.html'); 
 });
-
-
 
 app.listen(3000);
 console.log('3000 is the magic port');
