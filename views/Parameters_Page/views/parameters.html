@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang = "en">
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <title>Crispy Travel Search</title>
+        <!-- Update this stuff later -->
+	    <link rel='icon' href='' type='image/x-icon'/>
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">  
+	    <link href="../resources/css/my_style.css" rel="stylesheet">
+    </head>
+    <body>
+        <img src="../resources/img/travel-banner.png" class="img-fluid" alt="Travel Image">
+        <br>
+        <br>
+        <div class = "container">
+            <form name = "parameters" onsubmit="return validateForm()">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="budget" required>Budget</label>
+                    <div class="col-sm-10">
+                        <input type = "range" name = "budget" min = "1" max = "5">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="climate" required>Climate</label>
+                    <div class="col-sm-10">
+                        <input list="climate" name = "climate" placeholder = "Preferred Climate">
+                        <datalist id = "climate">
+                            <option value = "Cold"></option>
+                            <option value = "Temperate"></option>
+                            <option value = "Sub-Tropical"></option>
+                            <option value = "Tropical"></option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class = "form-group row">
+                    <label class = "col-sm-2 col-form-label" for="activityLevel" required>Activity Level</label>
+                    <div class = "col-sm-10">
+                        <input type = "radio" name = "activityLevel" value = "relaxed">Relaxed<br>
+                        <input type = "radio" name = "activityLevel" value = "laidBack">Laid Back<br>
+                        <input type = "radio" name = "activityLevel" value = "balanced">Balanced<br>
+                        <input type = "radio" name = "activityLevel" value = "active">Active<br>
+                        <input type = "radio" name = "activityLevel" value = "veryActive">Very Active<br>
+                    </div>
+                </div>
+                <div class = "form-group row">
+                    <label class = "col-sm-2 col-form-label" for="region" required>Region</label>
+                        <div class = "col-sm-10">
+                            <input type = "radio" name = "region" value = "NA">North America<br>
+                            <input type = "radio" name = "region" value = "SA">South America<br>
+                            <input type = "radio" name = "region" value = "EU">Europe<br>
+                            <input type = "radio" name = "region" value = "AF">Africa<br>
+                            <input type = "radio" name = "region" value = "AS">Asia<br>
+                            <input type = "radio" name = "region" value = "ME">Middle East<br>
+                            <input type = "radio" name = "region" value = "IS">Island<br>
+                            <input type = "radio" name = "region" value = "DC">Don't Care<br>
+                        </div>
+                </div>
+                <div class = "form-group row">
+                    <label class = "col-sm-2 col-form-label" for="region">Things to Do (optional)</label>
+                        <div class = "col-sm-10">
+                            <input type = "checkbox" name = "activity" value = "beach">Beach<br>
+                            <input type = "checkbox" name = "activity" value = "hike">Hiking<br>
+                            <input type = "checkbox" name = "activity" value = "museum">Museums/Historic Locations<br>
+                            <input type = "checkbox" name = "activity" value = "nightlife">Nightlife<br>
+                            <input type = "checkbox" name = "activity" value = "skiing">Skiing<br>
+                            <input type = "checkbox" name = "activity" value = "boating">Boating<br>
+                        </div>
+                </div>
+                <div class = "form-group row">
+                    <label class = "col-sm-2 col-form-label" for="region"></label>
+                        <input type = "submit" class = "btn btn-primary btn-block">
+                </div>    
+            </form>
+        </div>
+        <script src="../resources/js/my_scripts.js"></script>
+    </body>
+</html>
