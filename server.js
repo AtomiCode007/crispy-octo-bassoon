@@ -40,7 +40,7 @@ Connect.connect(function(err) {
 
 app.use(express.static(__dirname));
 
-
+/*
 // login page 
 app.get('/login', function(req, res) 
 {
@@ -55,6 +55,7 @@ app.get('/register', function(req, res)
   console.log(__dirname);
 });
 
+
 app.get('/home', function(req,res)
 {
   console.log("Got a GET request for the homepage");
@@ -67,7 +68,11 @@ app.get('/search', function(req,res)
   console.log("Got a GET request for the homepage");
   console.log(__dirname);
   res.sendFile(__dirname +'/views/Parameters_Page/views/parameters.html');
+*/
+  
 });
+
+
 
 app.listen(3000);
 console.log('3000 is the magic port');
