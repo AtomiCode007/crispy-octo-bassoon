@@ -47,6 +47,7 @@ app.get('/login', function(req, res)
 {
   console.log("Got a GET request for the Login Page");
   console.log(__dirname);
+  res.sendFile(__dirname +'/views/Login.html');
 });
 
 // registration page 
@@ -54,6 +55,7 @@ app.get('/register', function(req, res)
 {
   console.log("Got a GET request for the Registration page");
   console.log(__dirname);
+  res.sendFile(__dirname +'/views/Register.html');
 });
 
 
@@ -68,7 +70,7 @@ app.get('/search', function(req,res)
 {
   console.log("Got a GET request for the homepage");
   console.log(__dirname);
-  res.sendFile(__dirname +'/views/Parameters_Page/views/parameters.html');
+  res.sendFile(__dirname +'/views/parameters.html');
 
 });
 
@@ -77,14 +79,17 @@ app.get('/search', function(req,res)
  // ]);
 app.post('/register', function(req,res)
 {
+  console.log("Got a POST request for the REGISTER page");
   var lastn = req.body.lastname;
   var firstn = req.body.firstname;
   var email = req.body.email;
   var phone = req.body.phone;
   var passwrd = req.body.pass;
+  console.log(lastn);
   var useradd = "insert into users values ('"+lastn+"','"+firstn+"','"+email+"','"+phone+"','"+phone+"','"+passwrd+"');";
-  db.task('get-everything', task=>{
-    return task.batch([task.any(useradd)]);
+  db.query(sql, function(err,result){
+    if(err) throw err;
+    console.log("user added")
   })
 })
 
