@@ -23,7 +23,7 @@ var mysql = require('mysql');
   user: This should be left as postgres, the default user account created when PostgreSQL was installed
   password: This the password for accessing the database.  You'll need to set a password USING THE PSQL TERMINAL THIS IS NOT A PASSWORD FOR POSTGRES USER ACCOUNT IN LINUX!
 **********************/
-var Connect =  mysql.createConnection({
+const db =  mysql.createConnection({
 	host: 'localhost',
 	port: 3306,
 	database: 'crispy_travel',
@@ -31,7 +31,8 @@ var Connect =  mysql.createConnection({
 	password: 'password'
 });
 
-Connect.connect(function(err) {
+
+db.connect(function(err) {
 	if (err) throw err;
 	console.log("Connected!");
   });
@@ -40,7 +41,7 @@ Connect.connect(function(err) {
 
 app.use(express.static(__dirname));
 
-/*
+
 // login page 
 app.get('/login', function(req, res) 
 {
@@ -68,10 +69,24 @@ app.get('/search', function(req,res)
   console.log("Got a GET request for the homepage");
   console.log(__dirname);
   res.sendFile(__dirname +'/views/Parameters_Page/views/parameters.html');
-*/
-  
+
 });
 
+//	db.task('get-everything', task => {
+  //return task.batch([task.any(insert_statement), task.any(color_select)
+ // ]);
+app.post('/register', function(req,res)
+{
+  var lastn = req.body.lastname;
+  var firstn = req.body.firstname;
+  var email = req.body.email;
+  var phone = req.body.phone;
+  var passwrd = req.body.pass;
+  var useradd = "insert into users values ('"+lastn+"','"+firstn+"','"+email+"','"+phone+"','"+phone+"','"+passwrd+"');";
+  db.task('get-everything', task=>{
+    return task.batch([task.any(useradd)]);
+  })
+})
 
 
 app.listen(3000);
