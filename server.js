@@ -128,7 +128,6 @@ app.post('/register', function(req,res)
   .then
   {
     res.sendFile(__dirname +'/views/Login.html')
-
   }
 })
 
