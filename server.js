@@ -77,6 +77,15 @@ app.get('/search', function(req,res)
 
 });
 
+//Results Page
+
+app.get('/results', function(req, res) 
+{
+  console.log("Got a GET request for the Results Page");
+  console.log(__dirname);
+  res.sendFile(__dirname +'/views/Results.html');
+});
+
 
 //	db.task('get-everything', task => {
   //return task.batch([task.any(insert_statement), task.any(color_select)
