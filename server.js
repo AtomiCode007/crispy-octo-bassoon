@@ -68,7 +68,7 @@ app.get('/home', function(req,res)
 
 app.get('/search', function(req,res)
 {
-  console.log("Got a GET request for the homepage");
+  console.log("Got a GET request for the searchpage");
   console.log(__dirname);
   res.sendFile(__dirname +'/views/parameters.html');
 
@@ -103,6 +103,53 @@ app.post('/register', function(req,res)
   }
 })
 
+app.post('/search',function(req,res){
+  console.log("Got a POST request from search page");
+  var budget = req.body.budget;
+  var climate = req.body.climate;
+  var activity_level = req.body.activityLevel;
+  var region = req.body.region;
+  var activity = req.body.activity;
+  console.log(budget);
+  console.log(climate);
+  console.log(activity_level);
+  console.log(region);
+  console.log(activity);
+  var searchq = "select * from locations where region like '"+region+"' and activities like '%"+activity+"%';";
+  db.query(searchq, function(err, result){
+    if(err) throw err;
+    console.log(result);
+    console.log(result.length);
+    var best = 10000;
+    var best_index=0;
+    for(var i=0;i<result.length;i++)
+    {
+      var cost_diff = Math.abs(result[i].cost - budget)*3;
+      var climate_diff = Math.abs(result[i].cost - climate);
+      var activity_diff = Math.abs(result[i].activity_level-activity_level)*2;
+      var total_diff = cost_diff+climate_diff+activity_diff;
+      if(total_diff<best){
+        best_index = i;
+      }
+    }
+    var best_dest = result[best_index];
+    console.log(best_dest);
+
+
+    /*
+      IMPLEMENT RESULTS PAGE STUFF HERE
+      DATA TO GO TO RESULTS PAGE IS STORED IN best_dest
+      ARBITRARILY DECIDED TO WEIGHT COST BY A FACTOR OF 3, ACTIVITY BY A FACTOR OF 2, FEEL FREE TO CHANGE THIS
+
+
+    */
+
+    
+  }).then
+  {
+    res.sendFile(__dirname+'/views/Results.html');
+  }
+})
 
 app.listen(3000);
 console.log('3000 is the magic port');
