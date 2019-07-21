@@ -119,14 +119,36 @@ app.post('/search',function(req,res){
   db.query(searchq, function(err, result){
     if(err) throw err;
     console.log(result);
-  }) 
+    console.log(result.length);
+    var best = 10000;
+    var best_index=0;
+    for(var i=0;i<result.length;i++)
+    {
+      var cost_diff = Math.abs(result[i].cost - budget)*3;
+      var climate_diff = Math.abs(result[i].cost - climate);
+      var activity_diff = Math.abs(result[i].activity_level-activity_level)*2;
+      var total_diff = cost_diff+climate_diff+activity_diff;
+      if(total_diff<best){
+        best_index = i;
+      }
+    }
+    var best_dest = result[best_index];
+    console.log(best_dest);
 
-  .then
+
+    /*
+      IMPLEMENT RESULTS PAGE STUFF HERE
+      DATA TO GO TO RESULTS PAGE IS STORED IN best_dest
+      ARBITRARILY DECIDED TO WEIGHT COST BY A FACTOR OF 3, ACTIVITY BY A FACTOR OF 2, FEEL FREE TO CHANGE THIS
+
+
+    */
+
+    
+  }).then
   {
     res.sendFile(__dirname+'/views/Results.html');
   }
-
-
 })
 
 app.listen(3000);
