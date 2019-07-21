@@ -68,7 +68,7 @@ app.get('/home', function(req,res)
 
 app.get('/search', function(req,res)
 {
-  console.log("Got a GET request for the homepage");
+  console.log("Got a GET request for the searchpage");
   console.log(__dirname);
   res.sendFile(__dirname +'/views/parameters.html');
 
@@ -103,6 +103,31 @@ app.post('/register', function(req,res)
   }
 })
 
+app.post('/search',function(req,res){
+  console.log("Got a POST request from search page");
+  var budget = req.body.budget;
+  var climate = req.body.climate;
+  var activity_level = req.body.activityLevel;
+  var region = req.body.region;
+  var activity = req.body.activity;
+  console.log(budget);
+  console.log(climate);
+  console.log(activity_level);
+  console.log(region);
+  console.log(activity);
+  var searchq = "select * from locations where region like '"+region+"' and activities like '%"+activity+"%';";
+  db.query(searchq, function(err, result){
+    if(err) throw err;
+    console.log(result);
+  }) 
+
+  .then
+  {
+    res.sendFile(__dirname+'/views/Results.html');
+  }
+
+
+})
 
 app.listen(3000);
 console.log('3000 is the magic port');
