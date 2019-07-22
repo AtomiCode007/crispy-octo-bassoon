@@ -31,7 +31,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href=/search>Crispy Search</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href=/flysearch>Flight Search</a>
                     </li>
                     <li class="nav-item">
@@ -48,11 +48,11 @@
         </nav>
         <h1>Here's what we think are the best destinations for you:</h1>
         <!-- Insert cards with recommended locations here -->
-        <div class="row center-cols center-align">
-            <div class="card" style="width:306px">
+        <div class="row center-cols center-align" id="DestCards">
+<!--             <div class="card" style="width:306px">
                 <img src="../resources/img/London.jpg" alt="Location Image" style="height:203px;width:304px">
                 <div class="container">
-                  <h5><b>London, England</b></h4> 
+                  <h5 id="Dest"><b>London, England</b></h4> 
                   <p>Activites: x, y, z</p>
                   <a class = "nav-link" href="FlightsTestHarness.html">I want to go there!</a>
                 </div>
@@ -80,7 +80,17 @@
                     <p>Activites: x, y, z</p>
                     <a class = "nav-link" href="FlightsTestHarness.html">I want to go there!</a>
                 </div>
-            </div>
+            </div> -->
         </div>
+		<script type='text/javascript'>
+                var bestLocName = "<%= Best_Dest %>";
+                var List = "<%= List %>";
+                //var List = JSON.parse(List);
+                var Bob = document.getElementById("DestCards");
+                Bob.innerHTML = bestLocName;
+                console.log(name);
+                console.log(List[0]);
+                </script>
+
     </body>
 </html>

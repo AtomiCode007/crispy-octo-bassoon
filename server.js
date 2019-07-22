@@ -3,7 +3,6 @@
 
   Express      - A Node.js Framework
   Body-Parser  - A tool to help use parse the data in a post request
-  Pg-Promise   - A database tool to help use connect to our PostgreSQL database
 ***********************/
 var express = require('express'); //Ensure our express framework has been added
 var app = express();
@@ -13,20 +12,13 @@ var http = require('http');
 var fs = require('fs');
 app.use(bodyParser.json());              // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
- app.use(bodyParser.urlencoded({
-   extended: true
- }));
+
 //Create Database Connection
 var mysql = require('mysql');
 
-/**********************
-  Database Connection information
-  host: This defines the ip address of the server hosting our database.  We'll be using localhost and run our database on our local machine (i.e. can't be access via the Internet)
-  port: This defines what port we can expect to communicate to our database.  We'll use 5432 to talk with PostgreSQL
-  database: This is the name of our specific database.  From our previous lab, we created the football_db database, which holds our football data tables
-  user: This should be left as postgres, the default user account created when PostgreSQL was installed
-  password: This the password for accessing the database.  You'll need to set a password USING THE PSQL TERMINAL THIS IS NOT A PASSWORD FOR POSTGRES USER ACCOUNT IN LINUX!
-**********************/
+app.set('view engine', 'ejs');
+app.engine('html', require('ejs').renderFile);
+
 const db =  mysql.createConnection({
 	host: 'localhost',
 	port: 3306,
@@ -66,7 +58,9 @@ app.get('/home', function(req,res)
 {
   console.log("Got a GET request for the homepage");
   console.log(__dirname);
-  res.sendFile(__dirname +'/views/Homepage.html');
+  var name =  "Bob";
+  //res.sendFile(__dirname +'/views/Homepage.html');
+  res.render(__dirname +'/views/Homepage.html', {name:name});
 });
 //Search Page
 app.get('/search', function(req,res)
@@ -178,22 +172,32 @@ app.post('/search',function(req,res){
       }
     }
     var best_dest = result[best_index];
-    console.log(best_dest);
-
-
+    //console.log(best_dest);
+    //console.log("Raw Results: \n",result);
+    //console.log("Entries of results \n",Object.entries(result[0]));
+    console.log(result);
+    var resultJSON = JSON.stringify(
+      {
+        List : result
+      });
+    
     /*
       IMPLEMENT RESULTS PAGE STUFF HERE
       DATA TO GO TO RESULTS PAGE IS STORED IN best_dest
       ARBITRARILY DECIDED TO WEIGHT COST BY A FACTOR OF 3, ACTIVITY BY A FACTOR OF 2, FEEL FREE TO CHANGE THIS
-
-
     */
+   res.render(__dirname+'/views/Results.html', 
+   {
+     Best_Dest : best_dest.locname,
+     List : result,
+     Length : result.length
+   });
 
+  })//.then
+  //{
+    //res.sendFile(__dirname+'/views/Results.html');
     
-  }).then
-  {
-    res.sendFile(__dirname+'/views/Results.html');
-  }
+  //}
 })
 
 
