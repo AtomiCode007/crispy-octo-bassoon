@@ -76,7 +76,15 @@ app.get('/search', function(req,res)
   res.sendFile(__dirname +'/views/parameters.html');
 
 });
+//Flight search Page
 
+app.get('/flysearch', function(req,res)
+{
+  console.log("Got a GET request for the Flight Search Page");
+  console.log(__dirname);
+  res.sendFile(__dirname +'/views/FlightsTestHarness.html');
+
+});
 //Results Page
 
 app.get('/results', function(req, res) 
