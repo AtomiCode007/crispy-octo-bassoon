@@ -13,3 +13,9 @@
   .container {
     padding: 2px 16px;
   }
+
+  .center-cols > .col {
+    float:none;
+    display:inline-block;
+    text-align:initial;
+  }
