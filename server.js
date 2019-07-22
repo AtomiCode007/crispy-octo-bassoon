@@ -9,9 +9,13 @@ var express = require('express'); //Ensure our express framework has been added
 var app = express();
 var Router = express.Router();
 var bodyParser = require('body-parser'); //Ensure our body-parser tool has been added
+var http = require('http');
+var fs = require('fs');
 app.use(bodyParser.json());              // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
+ app.use(bodyParser.urlencoded({
+   extended: true
+ }));
 //Create Database Connection
 var mysql = require('mysql');
 
@@ -41,8 +45,7 @@ db.connect(function(err) {
 
 app.use(express.static(__dirname));
 
-
-// login page 
+//Login page 
 app.get('/login', function(req, res) 
 {
   console.log("Got a GET request for the Login Page");
@@ -50,7 +53,7 @@ app.get('/login', function(req, res)
   res.sendFile(__dirname +'/views/Login.html');
 });
 
-// registration page 
+//Registration page 
 app.get('/register', function(req, res) 
 {
   console.log("Got a GET request for the Registration page");
@@ -58,14 +61,14 @@ app.get('/register', function(req, res)
   res.sendFile(__dirname +'/views/Register.html');
 });
 
-
+//Home Page
 app.get('/home', function(req,res)
 {
   console.log("Got a GET request for the homepage");
   console.log(__dirname);
   res.sendFile(__dirname +'/views/Homepage.html');
 });
-
+//Search Page
 app.get('/search', function(req,res)
 {
   console.log("Got a GET request for the searchpage");
@@ -73,14 +76,57 @@ app.get('/search', function(req,res)
   res.sendFile(__dirname +'/views/parameters.html');
 
 });
+//Flight search Page
+
+app.get('/flysearch', function(req,res)
+{
+  console.log("Got a GET request for the Flight Search Page");
+  console.log(__dirname);
+  res.sendFile(__dirname +'/views/FlightsTestHarness.html');
+
+});
+//Results Page
+
+app.get('/results', function(req, res) 
+{
+  console.log("Got a GET request for the Results Page");
+  console.log(__dirname);
+  res.sendFile(__dirname +'/views/Results.html');
+});
+
 
 //	db.task('get-everything', task => {
   //return task.batch([task.any(insert_statement), task.any(color_select)
  // ]);
 
- app.use(bodyParser.urlencoded({
-   extended: true
- }));
+app.post('/login-submit', function(req,res)
+{
+  console.log("Got a POST request for the Login-submit page");
+  var userEmail = req.body.email;
+  var userPwd = req.body.password;
+  console.log(userEmail,userPwd);
+
+  var userChk = "select email, passwd from crispy_travel.users where '"+ userPwd +"' = passwd AND '"+ userEmail +"' = email;" 
+  //console.log(userChk);
+
+  db.query(userChk, function(err, rows, fields)
+  {
+    if(err) throw err;
+    if(rows.length == 0)
+    {
+      console.log("invalid Login");
+      fs.readFile(__dirname + '/views/Login.html', function(err,html)
+      {
+        if(err) throw err;
+      })
+      res.sendFile(__dirname +'/views/Login.html');
+    }
+    else
+    {
+      res.sendFile(__dirname +'/views/Homepage.html');
+    }  
+  })
+})
  
 app.post('/register', function(req,res)
 {
@@ -98,8 +144,7 @@ app.post('/register', function(req,res)
   })
   .then
   {
-    res.sendFile(__dirname +'/views/Homepage.html')
-
+    res.sendFile(__dirname +'/views/Login.html')
   }
 })
 
@@ -150,6 +195,7 @@ app.post('/search',function(req,res){
     res.sendFile(__dirname+'/views/Results.html');
   }
 })
+
 
 app.listen(3000);
 console.log('3000 is the magic port');

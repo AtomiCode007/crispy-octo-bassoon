@@ -7,11 +7,11 @@
         <title>Crispy Travel Search</title>
 	    <link rel='icon' href='' type='image/x-icon'/>
 	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">  
-	    <link href="../resources/css/my_style.css" rel="stylesheet">
+	    <link href="../resources/css/Results.css" rel="stylesheet">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-info">
-            <a class="navbar-brand" href="home.html">
+            <a class="navbar-brand" href="/home">
                 <img class="rounded" src="../resources/img/Airplane.png" alt="" width="30" height="30">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,9 @@
                     <li class="nav-item active">
                         <a class="nav-link" href=/search>Crispy Search</a>
                     </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href=/flysearch>Flight Search</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href=/register>Register</a>
                     </li>
@@ -38,12 +41,46 @@
                         <a class="nav-link" href=/login> Login </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href=/register>Logout</a>
+                        <a class="nav-link" href=/login>Logout</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        <h1>Insert cards with recommended locations</h1>
+        <h1>Here's what we think are the best destinations for you:</h1>
         <!-- Insert cards with recommended locations here -->
+        <div class="row center-cols center-align">
+            <div class="card" style="width:306px">
+                <img src="../resources/img/London.jpg" alt="Location Image" style="height:203px;width:304px">
+                <div class="container">
+                  <h5><b>London, England</b></h4> 
+                  <p>Activites: x, y, z</p>
+                  <a class = "nav-link" href="FlightsTestHarness.html">I want to go there!</a>
+                </div>
+            </div>
+            <div class="card" style="width:306px">
+                <img src="../resources/img/sydney.jpg" alt="Location Image" style="height:203px;width:304px">
+                <div class="container">
+                  <h5><b>Sydney, Australia</b></h4> 
+                  <p>Activites: x, y, z</p>
+                  <a class = "nav-link" href="FlightsTestHarness.html">I want to go there!</a>
+                </div>
+            </div>
+            <div class="card" style="width:306px">
+                <img src="../resources/img/capetown.jpg" alt="Location Image" style="height:203px;width:304px">
+                <div class="container">
+                    <h5><b>Cape Town, South Africa</b></h4> 
+                    <p>Activites: x, y, z</p>
+                    <a class = "nav-link" href="FlightsTestHarness.html">I want to go there!</a>
+                </div>
+            </div>
+            <div class="card" style="width:306px">
+                <img src="../resources/img/honolulu.jpg" alt="Location Image" style="height:203px;width:304px">
+                <div class="container">
+                    <h5><b>Honolulu, USA</b></h4> 
+                    <p>Activites: x, y, z</p>
+                    <a class = "nav-link" href="FlightsTestHarness.html">I want to go there!</a>
+                </div>
+            </div>
+        </div>
     </body>
 </html>
