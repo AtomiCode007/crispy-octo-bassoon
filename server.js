@@ -87,7 +87,13 @@ app.get('/results', function(req, res)
   console.log(__dirname);
   res.sendFile(__dirname +'/views/Results.html');
 });
-
+//Nothing Found Page
+app.get('/NothingFound', function(req, res) 
+{
+  console.log("Got a GET request for the NothingFound Page");
+  console.log(__dirname);
+  res.sendFile(__dirname +'/views/NothingFound.html');
+});
 
 //	db.task('get-everything', task => {
   //return task.batch([task.any(insert_statement), task.any(color_select)
@@ -176,27 +182,80 @@ app.post('/search',function(req,res){
     //console.log("Raw Results: \n",result);
     //console.log("Entries of results \n",Object.entries(result[0]));
     console.log(result);
-    var resultJSON = JSON.stringify(
+/*     var resultJSON = JSON.stringify(
       {
         List : result
-      });
+      }); */
     
     /*
       IMPLEMENT RESULTS PAGE STUFF HERE
       DATA TO GO TO RESULTS PAGE IS STORED IN best_dest
       ARBITRARILY DECIDED TO WEIGHT COST BY A FACTOR OF 3, ACTIVITY BY A FACTOR OF 2, FEEL FREE TO CHANGE THIS
     */
-   res.render(__dirname+'/views/Results.html', 
+   if(result.length <= 2)
    {
-     Best_Dest : best_dest.locname,
-     Best_Cost: best_dest.cost,
-     Best_Climate: best_dest.climate,
-     Best_Activity: best_dest.activity_level,
-     Best_Region: best_dest.region,
-     Best_Activity: best_dest.activities,
-     Second_Dest : result[1].locname,
-     Length : result.length
-   });
+    console.log("Two hits!");
+    res.render(__dirname+'/views/Results.html',
+    {
+      Best_Dest : best_dest.locname,
+      Best_Cost: best_dest.cost,
+      Best_Climate: best_dest.climate,
+      Best_ActivityLev: best_dest.activity_level,
+      Best_Region: best_dest.region,
+      Best_Activity: best_dest.activities,
+
+      Sec_Dest : result[1].locname,
+      Sec_Cost: best_dest.cost,
+      Sec_Climate: best_dest.climate,
+      Sec_ActivityLev: best_dest.activity_level,
+      Sec_Region: best_dest.region,
+      Sec_Activity: best_dest.activities,
+
+      Thr_Dest : "",
+      Thr_Cost: "",
+      Thr_Climate: "",
+      Thr_ActivityLev: "",
+      Thr_Region: "",
+      Thr_Activity: "",
+
+      Length : result.length
+    });
+   }
+   else if(result.length == 3)
+   {
+     console.log("Three hits!");
+      res.render(__dirname+'/views/Results.html',
+      {
+        Best_Dest : best_dest.locname,
+        Best_Cost: best_dest.cost,
+        Best_Climate: best_dest.climate,
+        Best_ActivityLev: best_dest.activity_level,
+        Best_Region: best_dest.region,
+        Best_Activity: best_dest.activities,
+
+        Sec_Dest : result[1].locname,
+        Sec_Cost: best_dest.cost,
+        Sec_Climate: best_dest.climate,
+        Sec_ActivityLev: best_dest.activity_level,
+        Sec_Region: best_dest.region,
+        Sec_Activity: best_dest.activities,
+
+        Thr_Dest : result[2].locname,
+        Thr_Cost: best_dest.cost,
+        Thr_Climate: best_dest.climate,
+        Thr_ActivityLev: best_dest.activity_level,
+        Thr_Region: best_dest.region,
+        Thr_Activity: best_dest.activities,
+        
+        Length : result.length
+      });
+   }
+   else if(result.length == 0)
+   {
+    console.log("No hits!");
+     res.redirect('/NothingFound');
+   }
+   
 
   })//.then
   //{
