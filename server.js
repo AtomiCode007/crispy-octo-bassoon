@@ -189,7 +189,12 @@ app.post('/search',function(req,res){
    res.render(__dirname+'/views/Results.html', 
    {
      Best_Dest : best_dest.locname,
-     List : result,
+     Best_Cost: best_dest.cost,
+     Best_Climate: best_dest.climate,
+     Best_Activity: best_dest.activity_level,
+     Best_Region: best_dest.region,
+     Best_Activity: best_dest.activities,
+     Second_Dest : result[1].locname,
      Length : result.length
    });
 
