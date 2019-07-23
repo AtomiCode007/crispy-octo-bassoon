@@ -127,7 +127,8 @@ app.post('/login-submit', function(req,res)
     }  
   })
 })
- 
+//Register Page
+
 app.post('/register', function(req,res)
 {
   console.log("Got a POST request for the REGISTER page");
@@ -147,6 +148,7 @@ app.post('/register', function(req,res)
     res.sendFile(__dirname +'/views/Login.html')
   }
 })
+//Search Page
 
 app.post('/search',function(req,res){
   console.log("Got a POST request from search page");
@@ -171,6 +173,7 @@ app.post('/search',function(req,res){
     {
       var cost_diff = Math.abs(result[i].cost - budget)*3;
       var climate_diff = Math.abs(result[i].cost - climate);
+      console.log(climate);
       var activity_diff = Math.abs(result[i].activity_level-activity_level)*2;
       var total_diff = cost_diff+climate_diff+activity_diff;
       if(total_diff<best){

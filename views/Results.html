@@ -108,9 +108,58 @@
                 var ThrActLev = "<%= Thr_ActivityLev %>";
                 var ThrRegion = "<%= Thr_Region %>";
                 var ThrActivites = "<%= Thr_Activity %>";
-                
+
+                var Climates = [BestClimate,SecClimate,ThrClimate];
+                var Costs = [BestCost, SecCost, ThrCost];
+                //console.log(Costs);
                 var locations = [bestLocName,SecLocName,ThrLocName];
-                
+                var Activites = [BestActivites,SecActivites,ThrActivites];
+                var ActiveLevels = [BestActLev,SecActLev,ThrActLev];
+
+                for(var j=0;j<Climates.length;j++)
+                {
+                    if(Climates[j] == 0)
+                    {
+                        Climates[j]="Colder Climate";
+                    }
+                    else if(Climates[j] == 1)
+                    {
+                        Climates[j]="Temperate Climate";
+                    }
+                    else if(Climates[j] == 2)
+                    {
+                        Climates[j]="Sub-Tropical Climate";
+                    }
+                    else if(Climates[j] == 3)
+                    {
+                        Climates[j]="Tropical Climate";
+                    }
+                }
+
+                for(var k=0;k<Costs.length;k++)
+                {
+                    
+                    if(Costs[k] == "0")
+                    {
+                        Costs[k]="$";
+                        console.log(Costs);
+                    }
+                    else if(Costs[k] == "1")
+                    {
+                        Costs[k]="$$";
+                    }
+                    else if(Costs[k] == "2")
+                    {
+                        console.log(Costs[k]);
+                        Costs[k]="$$$";
+                    }
+                    else if(Costs[k] == "3")
+                    {
+                        Costs[k]="$$$$";
+                    }
+                }
+
+                console.log(Costs);
                 var Bob = document.getElementById("DestCards");
                 //Bob.innerHTML = bestLocName;
                 for(i = 0; i<length;i++)
@@ -119,10 +168,12 @@
                                     "<img src= ../resources/img/"+locations[i]+".jpg"+" alt= ../resources/img/(SOME DEFAULT IMAGE) style=height:243px;width:346px;>"+
                                     "<div class= 'container'>"+
                                         "<h5><b>"+locations[i]+"</b></h4>"+ 
-                                        "<p>"/*Activites: x, y, z*/+"</p>"+
+                                        "<p>Activites: "+Activites[i]+"</p>"+
+                                        "<p>Climate: "+Climates[i]+"</p>"+
+                                        "<p>Cost: "+Costs[i]+"</p>"+
                                         "<div class='container'>"+
-                                            "<a class = 'btn btn-primary btn-block' style=float:left;width:160px;padding:10px; href= /flysearch >I want to go there!</a>"+
-                                            "<a class = 'btn btn-primary btn-block' style=width:100px;float:right;padding:10px; href= >Plan Trip</a>"+
+                                            "<a class = 'btn btn-primary btn-block'  href= /flysearch >I want to go there!</a>"+
+                                            "<a class = 'btn btn-primary btn-block'  href= >Plan Trip</a>"+
                                         "</div>"+
                                     "</div>"+
                                 "</div>";
