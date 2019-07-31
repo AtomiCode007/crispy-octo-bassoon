@@ -1,0 +1,7 @@
+*.DS_Store
+resources/*.DS_Store
+resources/css/*.DS_Store
+resources/img/*.DS_Store
+node_modules/*.DS_Store
+sql/*.DS_Store
+views/*.DS_Store

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang = "en">
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <title>Crispy Travel Search</title>
+	    <link rel='icon' href='' type='image/x-icon'/>
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">  
+	    <link href="../resources/css/Results.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+            <a class="navbar-brand" href="/home">
+                <img class="rounded" src="../resources/img/Airplane.png" alt="" width="30" height="30">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=""> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href=/search>Crispy Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=/flysearch>Flight Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=/register>Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=/login> Login </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=/login>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <h1 style="margin-top: 20px;margin-bottom: 25px">Here's what we think are the best destinations for you:</h1>
+        <!-- Insert cards with recommended locations here -->
+        <div class="row center-cols center-align" id="DestCards">
+<!--             <div class="card" style="width:306px">
+                <img src="../resources/img/London.jpg" alt="Location Image" style="height:203px;width:304px">
+                <div class="container">
+                  <h5 id="Dest"><b>London, England</b></h4> 
+                  <p>Activites: x, y, z</p>
+                  <a class = "nav-link" href="FlightsTestHarness.html">I want to go there!</a>
+                </div>
+            </div>
+            <div class="card" style="width:306px">
+                <img src="../resources/img/sydney.jpg" alt="Location Image" style="height:203px;width:304px">
+                <div class="container">
+                  <h5><b>Sydney, Australia</b></h4> 
+                  <p>Activites: x, y, z</p>
+                  <a class = "nav-link" href="FlightsTestHarness.html">I want to go there!</a>
+                </div>
+            </div>
+            <div class="card" style="width:306px">
+                <img src="../resources/img/capetown.jpg" alt="Location Image" style="height:203px;width:304px">
+                <div class="container">
+                    <h5><b>Cape Town, South Africa</b></h4> 
+                    <p>Activites: x, y, z</p>
+                    <a class = "nav-link" href="FlightsTestHarness.html">I want to go there!</a>
+                </div>
+            </div>
+            <div class="card" style="width:306px">
+                <img src="../resources/img/honolulu.jpg" alt="Location Image" style="height:203px;width:304px">
+                <div class="container">
+                    <h5><b>Honolulu, USA</b></h4> 
+                    <p>Activites: x, y, z</p>
+                    <a class = "nav-link" href="FlightsTestHarness.html">I want to go there!</a>
+                </div>
+            </div> -->
+        </div>
+        <script type='text/javascript'>
+
+                var length = "<%= Length %>";
+                console.log(length);
+
+                var bestLocName = "<%= Best_Dest %>";
+                var BestCost = "<%= Best_Cost %>";
+                var BestClimate = "<%= Best_Climate %>";
+                var BestActLev = "<%= Best_ActivityLev %>";
+                var BestRegion = "<%= Best_Region %>";
+                var BestActivites = "<%= Best_Activity %>";
+
+                var SecLocName = "<%= Sec_Dest %>";
+                var SecCost = "<%= Sec_Cost %>";
+                var SecClimate = "<%= Sec_Climate %>";
+                var SecActLev = "<%= Sec_ActivityLev %>";
+                var SecRegion = "<%= Sec_Region %>";
+                var SecActivites = "<%= Sec_Activity %>";
+                
+
+                var ThrLocName = "<%= Thr_Dest %>";
+                var ThrCost = "<%= Thr_Cost %>";
+                var ThrClimate = "<%= Thr_Climate %>";
+                var ThrActLev = "<%= Thr_ActivityLev %>";
+                var ThrRegion = "<%= Thr_Region %>";
+                var ThrActivites = "<%= Thr_Activity %>";
+
+                var Climates = [BestClimate,SecClimate,ThrClimate];
+                var Costs = [BestCost, SecCost, ThrCost];
+                //console.log(Costs);
+                var locations = [bestLocName,SecLocName,ThrLocName];
+                var Activites = [BestActivites,SecActivites,ThrActivites];
+                var ActiveLevels = [BestActLev,SecActLev,ThrActLev];
+
+                for(var j=0;j<Climates.length;j++)
+                {
+                    if(Climates[j] == 0)
+                    {
+                        Climates[j]="Colder Climate";
+                    }
+                    else if(Climates[j] == 1)
+                    {
+                        Climates[j]="Temperate Climate";
+                    }
+                    else if(Climates[j] == 2)
+                    {
+                        Climates[j]="Sub-Tropical Climate";
+                    }
+                    else if(Climates[j] == 3)
+                    {
+                        Climates[j]="Tropical Climate";
+                    }
+                }
+
+                for(var k=0;k<Costs.length;k++)
+                {
+                    
+                    if(Costs[k] == "0")
+                    {
+                        Costs[k]="$";
+                        console.log(Costs);
+                    }
+                    else if(Costs[k] == "1")
+                    {
+                        Costs[k]="$$";
+                    }
+                    else if(Costs[k] == "2")
+                    {
+                        console.log(Costs[k]);
+                        Costs[k]="$$$";
+                    }
+                    else if(Costs[k] == "3")
+                    {
+                        Costs[k]="$$$$";
+                    }
+                }
+
+                console.log(Costs);
+                var Bob = document.getElementById("DestCards");
+                //Bob.innerHTML = bestLocName;
+                for(i = 0; i<length;i++)
+                {
+                    var CardAdd = "<div class= 'card' style= width:346px;margin-left:20px;margin-right:10px>"+
+                                    "<img src= ../resources/img/"+locations[i]+".jpg"+" alt= ../resources/img/(SOME DEFAULT IMAGE) style=height:243px;width:346px;>"+
+                                    "<div class= 'container'>"+
+                                        "<h5><b>"+locations[i]+"</b></h4>"+ 
+                                        "<p>Activites: "+Activites[i]+"</p>"+
+                                        "<p>Climate: "+Climates[i]+"</p>"+
+                                        "<p>Cost: "+Costs[i]+"</p>"+
+                                        "<div class='container'>"+
+                                            "<a class = 'btn btn-primary btn-block'  href= /flysearch >I want to go there!</a>"+
+                                            "<a class = 'btn btn-primary btn-block'  href= >Plan Trip</a>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>";
+
+                                Bob.innerHTML += CardAdd;
+                }
+                console.log(BestCost);
+                </script>
+
+    </body>
+</html>
