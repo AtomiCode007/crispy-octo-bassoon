@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang = "en">
+    <head>
+        <meta charset = "utf-8">
+        <meta name = "viewport" content = "width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <title>Crispy Travel Search</title>
+	    <link rel='icon' href='' type='image/x-icon'/>
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">  
+	    <!-- <link href="../resources/css/my_style.css" rel="stylesheet"> -->
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+            <a class="navbar-brand" href="/home">
+                <img class="rounded" src="../resources/img/Airplane.png" alt="" width="30" height="30">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href=/home>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=""> <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=></a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href=/search>Crispy Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=/flysearch>Flight Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=/register>Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=/login> Login </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href=/login>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <img src="../resources/img/travel-banner.png" class="img-fluid" alt="Travel Image">
+        <br>
+        <br>
+        <div class = "container">
+            <form name = "parameters" onsubmit="return validateForm()" action="/search" method="POST">
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="budget" required>Budget</label>
+                    <div class="col-sm-10">
+                        <input type = "range" name = "budget" min = "1" max = "5">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label" for="climate" required>Climate</label>
+                    <div class="col-sm-10">
+                        <input list="climate" name = "climate" placeholder = "Preferred Climate">
+                        <datalist id = "climate">
+                            <option value = "Cold"></option>
+                            <option value = "Temperate"></option>
+                            <option value = "Sub-Tropical"></option>
+                            <option value = "Tropical"></option>
+                        </datalist>
+                    </div>
+                </div>
+                <div class = "form-group row">
+                    <label class = "col-sm-2 col-form-label" for="activityLevel" required>Activity Level</label>
+                    <div class = "col-sm-10">
+                        <input type = "radio" name = "activityLevel" value = "1">Relaxed<br>
+                        <input type = "radio" name = "activityLevel" value = "2">Laid Back<br>
+                        <input type = "radio" name = "activityLevel" value = "3">Balanced<br>
+                        <input type = "radio" name = "activityLevel" value = "4">Active<br>
+                        <input type = "radio" name = "activityLevel" value = "5">Very Active<br>
+                    </div>
+                </div>
+                <div class = "form-group row">
+                    <label class = "col-sm-2 col-form-label" for="region" required>Region</label>
+                        <div class = "col-sm-10">
+                            <input type = "radio" name = "region" value = "North America">North America<br>
+                            <input type = "radio" name = "region" value = "South America">South America<br>
+                            <input type = "radio" name = "region" value = "Europe">Europe<br>
+                            <input type = "radio" name = "region" value = "Africa">Africa<br>
+                            <input type = "radio" name = "region" value = "AAsia">Asia<br>
+                            <input type = "radio" name = "region" value = "Middle East">Middle East<br>
+                            <input type = "radio" name = "region" value = "Island">Island<br>
+                        </div>
+                </div>
+                <div class = "form-group row">
+                    <label class = "col-sm-2 col-form-label" for="region">Things to Do (optional)</label>
+                        <div class = "col-sm-10">
+                            <input type = "radio" name = "activity" value = "beach">Beach<br>
+                            <input type = "radio" name = "activity" value = "hiking">Hiking<br>
+                            <input type = "radio" name = "activity" value = "museum">Museums/Historic Locations<br>
+                            <input type = "radio" name = "activity" value = "nightlife">Nightlife<br>
+                            <input type = "radio" name = "activity" value = "skiing">Skiing<br>
+                            <input type = "radio" name = "activity" value = "boating">Boating<br>
+                        </div>
+                </div>
+                <div class = "form-group row">
+                    <label class = "col-sm-2 col-form-label" for="region"></label>
+                        <input type = "submit" class = "btn btn-primary btn-block">
+                </div>    
+            </form>
+        </div>
+        <script src="../resources/js/requiredFieldsScript.js"></script>
+    </body>
+</html>
